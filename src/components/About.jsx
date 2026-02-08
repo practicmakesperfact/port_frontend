@@ -144,21 +144,21 @@ const About = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="glass-card p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300">
                     <h3 className="text-3xl font-bold text-accent-blue mb-2">
-                      {profileData?.years_experience || 5}+
+                      {profileData?.years_experience || 4}+
                     </h3>
                     <p className="text-gray-600 dark:text-slate-400 text-sm">Years Experience</p>
                   </div>
                   
                   <div className="glass-card p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300">
                     <h3 className="text-3xl font-bold text-accent-blue mb-2">
-                      {profileData?.projects_delivered || 50}+
+                      {profileData?.projects_delivered || 20}+
                     </h3>
                     <p className="text-gray-600 dark:text-slate-400 text-sm">Projects Delivered</p>
                   </div>
                   
                   <div className="glass-card p-6 text-center hover:transform hover:-translate-y-2 transition-all duration-300">
                     <h3 className="text-3xl font-bold text-accent-blue mb-2">
-                      {profileData?.happy_clients || 30}+
+                      {profileData?.happy_clients || 10}+
                     </h3>
                     <p className="text-gray-600 dark:text-slate-400 text-sm">Happy Clients</p>
                   </div>
