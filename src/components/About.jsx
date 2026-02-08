@@ -15,12 +15,12 @@ const About = () => {
 
   useEffect(() => {
     // Fetch profile data from API
-    fetch('/api/profile/data/')
+    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/profile/data/`)
       .then(response => response.json())
       .then(data => {
         // Convert relative image URL to absolute if needed
         if (data.profile_image && !data.profile_image.startsWith('http')) {
-          data.profile_image = `http://localhost:8000${data.profile_image}`;
+          data.profile_image = `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}${data.profile_image}`;
         }
         
         setProfileData(data);
