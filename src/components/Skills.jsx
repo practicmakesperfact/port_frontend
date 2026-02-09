@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import portfolioData from '../data/portfolio.json';
 
 const Skills = () => {
   const skillsRef = useRef([]);
@@ -8,17 +9,9 @@ const Skills = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch skills data from API
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://localhost:8000'}/api/skills/data/`)
-      .then(response => response.json())
-      .then(data => {
-        setSkillsData(data.categories || []);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching skills data:', error);
-        setLoading(false);
-      });
+    // Load skills data from local JSON
+    setSkillsData(portfolioData.skills);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -61,23 +54,23 @@ const Skills = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
           {skillsData.map((category, index) => (
             <div
-              key={category.id}
+              key={`category-${index}`}
               ref={(el) => (skillsRef.current[index] = el)}
               className="glass-card p-6 hover:transform hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl hover:shadow-accent-blue/20 w-full"
               style={{ opacity: '0', transform: 'translateY(30px)' }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <i className={`${category.icon} text-accent-blue text-xl`}></i>
+                <i className={`${category.icon || 'fas fa-code'} text-accent-blue text-xl`}></i>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-slate-200">{category.name}</h3>
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                {category.skills.map((skill, skillIndex) => (
+                {category.skills?.map((skill, skillIndex) => (
                   <div
-                    key={skillIndex}
+                    key={`skill-${index}-${skillIndex}`}
                     className="flex flex-col items-center justify-center p-3 rounded-xl bg-accent-blue/5 border border-accent-blue/10 hover:bg-accent-blue/10 hover:shadow-lg hover:shadow-accent-blue/20 transition-all duration-300 group"
                   >
-                    <i className={`${skill.icon} text-accent-blue text-2xl mb-2 group-hover:scale-110 transition-transform duration-300`}></i>
+                    <i className={`${skill.icon || 'fas fa-code'} text-accent-blue text-2xl mb-2 group-hover:scale-110 transition-transform duration-300`}></i>
                     <span className="text-gray-900 dark:text-slate-200 text-sm font-medium text-center">{skill.name}</span>
                   </div>
                 ))}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import portfolioData from '../data/portfolio.json';
 
 const Contact = () => {
   const { isDark } = useTheme();
@@ -31,18 +32,38 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://localhost:8000'}/api/contact/submit/`, {
+      // Create email content
+      const emailContent = {
+        to: portfolioData.profile.email,
+        subject: `Portfolio Contact: ${formData.subject}`,
+        body: `
+Name: ${formData.name}
+Email: ${formData.email}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+        `.trim()
+      };
+      
+      // Use Web3Forms API (free, no backend needed)
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: 'YOUR_FREE_KEY', // You'll need to get this from web3forms.com
+          subject: emailContent.subject,
+          from_name: formData.name,
+          from_email: formData.email,
+          message: emailContent.body
+        })
       });
       
-      const data = await response.json();
-      
-      if (data.success) {
-        showNotification('Your message has been sent successfully!', 'success');
+      if (response.ok) {
+        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
         setFormData({
           name: '',
           email: '',
@@ -50,10 +71,23 @@ const Contact = () => {
           message: ''
         });
       } else {
-        showNotification(data.error || 'Failed to send message', 'error');
+        throw new Error('Failed to send message');
       }
     } catch (error) {
-      showNotification('Failed to send message. Please try again.', 'error');
+      // Fallback to mailto
+      const subject = encodeURIComponent(formData.subject);
+      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      const mailtoLink = `mailto:${portfolioData.profile.email}?subject=${subject}&body=${body}`;
+      
+      window.open(mailtoLink, '_blank');
+      showNotification('Email client opened! Please click "Send" to deliver your message to maniga.1love@gmail.com', 'success');
+      
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
     } finally {
       setIsSubmitting(false);
     }

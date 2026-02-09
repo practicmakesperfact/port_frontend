@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import portfolioData from '../data/portfolio.json';
 
 const Navbar = () => {
   const { isDark, toggleTheme } = useTheme();
@@ -16,15 +17,8 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    // Fetch profile data from API
-    fetch('/api/profile/data/')
-      .then(response => response.json())
-      .then(data => {
-        setProfileData(data);
-      })
-      .catch(error => {
-        console.error('Error fetching profile data:', error);
-      });
+    // Load profile data from local JSON
+    setProfileData(portfolioData.profile);
   }, []);
 
   useEffect(() => {

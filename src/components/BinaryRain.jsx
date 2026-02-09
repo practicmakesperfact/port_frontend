@@ -9,17 +9,21 @@ const BinaryRain = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     
+    const fontSize = 14;
+    const drops = [];
+    
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      
+      // Recalculate drops when canvas resizes
+      const newColumns = Math.floor(canvas.width / fontSize);
+      drops.length = newColumns;
+      drops.fill(1);
     };
     
     resize();
     window.addEventListener('resize', resize);
-    
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = new Array(columns).fill(1);
     
     const animate = () => {
       // Clear canvas with theme-aware background

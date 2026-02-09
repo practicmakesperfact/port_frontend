@@ -1,0 +1,111 @@
+{
+  "profile": {
+    "name": "Haymanot Asmare",
+    "title": "Full Stack Software Engineer",
+    "bio": "Passionate software developer with expertise in modern web technologies. I specialize in building scalable enterprise applications, e-commerce platforms, and responsive web solutions with a focus on clean code and user experience.",
+    "profile_image": "/images/WhatsApp Image 2025-02-09 at 09.36.18.jpeg",
+    "github_url": "https://github.com/haymanot",
+    "linkedin_url": "https://linkedin.com/in/haymanot-asmare",
+    "email": "maniga.1love@gmail.com"
+  },
+  "skills": [
+    {
+      "name": "Frontend Development",
+      "skills": [
+        {"name": "React", "level": 90, "icon": "fab fa-react"},
+        {"name": "JavaScript", "level": 85, "icon": "fab fa-js"},
+        {"name": "Tailwind CSS", "level": 90, "icon": "fab fa-css3"},
+        {"name": "Bootstrap", "level": 85, "icon": "fab fa-bootstrap"}
+      ]
+    },
+    {
+      "name": "Backend Development",
+      "skills": [
+        {"name": "Django", "level": 90, "icon": "fab fa-python"},
+        {"name": "Django REST Framework", "level": 85, "icon": "fas fa-cogs"},
+        {"name": "FastAPI", "level": 75, "icon": "fas fa-bolt"}
+      ]
+    },
+    {
+      "name": "Databases",
+      "skills": [
+        {"name": "PostgreSQL", "level": 85, "icon": "fas fa-database"},
+        {"name": "MySQL", "level": 80, "icon": "fas fa-database"},
+        {"name": "SQLite", "level": 90, "icon": "fas fa-database"},
+        {"name": "MongoDB", "level": 70, "icon": "fas fa-leaf"}
+      ]
+    },
+    {
+      "name": "Automation",
+      "skills": [
+        {"name": "Python Automation", "level": 90, "icon": "fab fa-python"},
+        {"name": "Web Scraping", "level": 85, "icon": "fas fa-spider"},
+        {"name": "Selenium", "level": 80, "icon": "fas fa-robot"},
+        {"name": "Playwright", "level": 75, "icon": "fas fa-play"}
+      ]
+    },
+    {
+      "name": "Mobile Development",
+      "skills": [
+        {"name": "Flutter", "level": 70, "icon": "fas fa-mobile-alt"}
+      ]
+    },
+    {
+      "name": "Tools & Collaboration",
+      "skills": [
+        {"name": "Git", "level": 90, "icon": "fab fa-git-alt"},
+        {"name": "GitHub", "level": 85, "icon": "fab fa-github"}
+      ]
+    },
+    {
+      "name": "Soft Skills",
+      "skills": [
+        {"name": "Communication", "level": 90, "icon": "fas fa-comments"},
+        {"name": "Teamwork", "level": 85, "icon": "fas fa-users"},
+        {"name": "Problem Solving", "level": 95, "icon": "fas fa-lightbulb"}
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "CFITP - Client Feedback & Issue Tracking Portal",
+      "description": "A secure and scalable enterprise web application designed to manage client feedback, track issues, and improve communication efficiency for AITB.",
+      "technologies": ["React", "Tailwind CSS", "Django", "Django REST Framework", "PostgreSQL"],
+      "image": "/projects/cfitp.jpeg",
+      "github_url": "https://github.com/haymanot/cfitp",
+      "live_url": "https://cfitp.example.com",
+      "features": ["Role-based authentication", "Feedback submission and tracking", "Real-time issue status tracking", "Admin dashboard and analytics", "RESTful API integration"],
+      "category": "enterprise"
+    },
+    {
+      "title": "Yoni Central Electronics - Online Shopping Platform",
+      "description": "A full-featured e-commerce web application developed for an electronics retail business, enabling online product browsing, purchasing, and order management.",
+      "technologies": ["JavaScript", "Bootstrap", "Django", "SQLite3"],
+      "image": "/projects/yoni.jpeg",
+      "github_url": "https://github.com/haymanot/yoni-electronics",
+      "live_url": "https://yoni-electronics.example.com",
+      "features": ["Product catalog and categories", "Shopping cart functionality", "Order management system", "Admin product control", "Responsive design"],
+      "category": "ecommerce"
+    },
+    {
+      "title": "FOTB - File Organizer Telegram Bot",
+      "description": "An intelligent Telegram bot designed to automatically organize and categorize downloaded files, making file management seamless and efficient.",
+      "technologies": ["Python", "Telegram Bot API", "SQLite", "File System Operations"],
+      "image": "/projects/bot.jpeg",
+      "github_url": "https://github.com/haymanot/fotb-bot",
+      "live_url": "https://t.me/fotb_bot",
+      "features": ["Automatic file categorization", "Smart file naming", "Download tracking", "File search functionality", "Custom organization rules"],
+      "category": "automation"
+    },
+    {
+      "title": "BIIB Designs - Architectural Company Website",
+      "description": "A modern and visually appealing corporate website developed for an architectural and design company to showcase services, portfolios, and company identity.",
+      "technologies": ["React", "Tailwind CSS", "Django", "Django REST Framework"],
+      "image": "/projects/biib-designs.avif",
+      "github_url": "https://github.com/haymanot/biib-designs",
+      "live_url": "https://biib-designs.example.com",
+      "features": ["Portfolio gallery", "Service presentation", "Contact and inquiry forms", "Responsive and modern layout", "Backend-powered content management"],
+      "category": "corporate"
+    }
+  ]
+}

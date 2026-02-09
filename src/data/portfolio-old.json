@@ -1,0 +1,96 @@
+{
+  "profile": {
+    "name": "Haymanot Asmare",
+    "title": "Full Stack Software Engineer",
+    "bio": "Passionate software developer with expertise in modern web technologies...",
+    "profile_image": "/images/profile.jpg",
+    "github_url": "https://github.com/yourusername",
+    "linkedin_url": "https://linkedin.com/in/yourusername",
+    "email": "your.email@example.com"
+  },
+  "skills": [
+    {
+      "name": "Frontend Development",
+      "skills": [
+        {
+          "name": "React",
+          "level": 90
+        },
+        {
+          "name": "JavaScript",
+          "level": 85
+        },
+        {
+          "name": "HTML/CSS",
+          "level": 90
+        },
+        {
+          "name": "TypeScript",
+          "level": 75
+        }
+      ]
+    },
+    {
+      "name": "Backend Development",
+      "skills": [
+        {
+          "name": "Python",
+          "level": 85
+        },
+        {
+          "name": "Django",
+          "level": 80
+        },
+        {
+          "name": "Node.js",
+          "level": 75
+        },
+        {
+          "name": "PostgreSQL",
+          "level": 70
+        }
+      ]
+    },
+    {
+      "name": "Tools & Collaboration",
+      "skills": [
+        {
+          "name": "Git",
+          "level": 85
+        },
+        {
+          "name": "Docker",
+          "level": 70
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "FOTB",
+      "description": "Fashion on the Beach - E-commerce platform",
+      "technologies": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Stripe"
+      ],
+      "image": "/projects/fotb.jpg",
+      "github_url": "https://github.com/yourusername/fotb",
+      "live_url": "https://fotb.example.com"
+    },
+    {
+      "title": "Yoni Central Electronics",
+      "description": "Online shopping platform for electronics",
+      "technologies": [
+        "React",
+        "Django",
+        "PostgreSQL",
+        "Stripe"
+      ],
+      "image": "/projects/yoni.jpg",
+      "github_url": "https://github.com/yourusername/yoni",
+      "live_url": "https://yoni.example.com"
+    }
+  ]
+}

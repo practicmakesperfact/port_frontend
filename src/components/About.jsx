@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import portfolioData from '../data/portfolio.json';
 
 const About = () => {
   const { isDark } = useTheme();
@@ -14,22 +15,9 @@ const About = () => {
   ];
 
   useEffect(() => {
-    // Fetch profile data from API
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/profile/data/`)
-      .then(response => response.json())
-      .then(data => {
-        // Convert relative image URL to absolute if needed
-        if (data.profile_image && !data.profile_image.startsWith('http')) {
-          data.profile_image = `${import.meta.env.VITE_API_BASE_URL || 'https://localhost:8000'}${data.profile_image}`;
-        }
-        
-        setProfileData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching profile data:', error);
-        setLoading(false);
-      });
+    // Load profile data from local JSON
+    setProfileData(portfolioData.profile);
+    setLoading(false);
   }, []);
 
   if (loading) {

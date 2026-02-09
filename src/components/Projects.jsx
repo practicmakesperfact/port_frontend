@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
+import portfolioData from '../data/portfolio.json';
 
 const Projects = () => {
   const projectCardsRef = useRef([]);
@@ -8,17 +9,10 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
-  // Get project background image - only use admin-uploaded images
+  // Get project background image - use local images
   const getProjectBackground = (project) => {
     if (project.image) {
-      // Remove any leading 'media/' prefix to avoid double paths
-      let imagePath = project.image;
-      if (imagePath.startsWith('/')) {
-        imagePath = imagePath.substring(6); // Remove 'media/' (6 characters)
-      }
-      
-      const imageUrl = `http://localhost:8000/media/${imagePath}?t=${lastUpdate}`;
-      return imageUrl;
+      return project.image;
     }
     return null;
   };
@@ -36,28 +30,10 @@ const Projects = () => {
   };
 
   useEffect(() => {
-    // Fetch projects data from API
-    const fetchProjects = () => {
-      fetch('https://localhost:8000/api/projects/data/')
-        .then(response => response.json())
-        .then(data => {
-          setProjectsData(data.projects || []);
-          setLoading(false);
-          setLastUpdate(Date.now());
-        })
-        .catch(error => {
-          console.error('Error fetching projects data:', error);
-          setLoading(false);
-        });
-    };
-
-    // Initial fetch
-    fetchProjects();
-
-    // Auto-refresh every 10 seconds
-    const interval = setInterval(fetchProjects, 10000);
-
-    return () => clearInterval(interval);
+    // Load projects data from local JSON
+    setProjectsData(portfolioData.projects);
+    setLoading(false);
+    setLastUpdate(Date.now());
   }, []);
 
   useEffect(() => {
@@ -154,7 +130,7 @@ const Projects = () => {
                 <p className="text-gray-200 text-sm mb-4 line-clamp-3">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech_stack.slice(0, 3).map((tech, techIndex) => (
+                  {project.technologies?.slice(0, 3).map((tech, techIndex) => (
                     <span key={techIndex} className="bg-accent-blue/20 text-accent-blue px-2 py-1 rounded-full text-xs font-medium">
                       {tech}
                     </span>
@@ -166,19 +142,19 @@ const Projects = () => {
                     href={project.github_url || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white hover:text-accent-blue transition-colors duration-300 px-3 py-2 rounded-lg border border-white/20 hover:bg-white/10"
+                    className="flex items-center justify-center w-10 h-10 text-white hover:text-accent-blue transition-colors duration-300 rounded-lg border border-white/20 hover:bg-white/10"
+                    title="GitHub"
                   >
                     <i className="fab fa-github"></i>
-                    <span className="text-sm font-medium">GitHub</span>
                   </a>
                   <a
                     href={project.live_url || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-white hover:text-accent-blue transition-colors duration-300 px-3 py-2 rounded-lg border border-white/20 hover:bg-white/10"
+                    className="flex items-center justify-center w-10 h-10 text-white hover:text-accent-blue transition-colors duration-300 rounded-lg border border-white/20 hover:bg-white/10"
+                    title="Live Demo"
                   >
                     <i className="fas fa-external-link-alt"></i>
-                    <span className="text-sm font-medium">Live Demo</span>
                   </a>
                 </div>
               </div>
