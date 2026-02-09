@@ -9,7 +9,7 @@ const Skills = () => {
 
   useEffect(() => {
     // Fetch skills data from API
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/skills/data/`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://localhost:8000'}/api/skills/data/`)
       .then(response => response.json())
       .then(data => {
         setSkillsData(data.categories || []);

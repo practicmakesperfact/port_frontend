@@ -31,7 +31,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/contact/submit/`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'https://localhost:8000'}/api/contact/submit/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -38,7 +38,7 @@ const Projects = () => {
   useEffect(() => {
     // Fetch projects data from API
     const fetchProjects = () => {
-      fetch('http://localhost:8000/api/projects/data/')
+      fetch('https://localhost:8000/api/projects/data/')
         .then(response => response.json())
         .then(data => {
           setProjectsData(data.projects || []);
