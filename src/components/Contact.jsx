@@ -15,10 +15,7 @@ const Contact = () => {
   const [notification, setNotification] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const showNotification = (message, type) => {
@@ -56,16 +53,11 @@ const Contact = () => {
 
       if (result.success) {
         showNotification('Message sent successfully!', 'success');
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
         showNotification(result.message || 'Submission failed', 'error');
       }
-    } catch (error) {
+    } catch {
       showNotification('Network error. Please try again.', 'error');
     } finally {
       setIsSubmitting(false);
@@ -73,150 +65,115 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="max-w-6xl mx-auto px-5">
-        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-accent-blue to-purple-600 bg-clip-text text-transparent">
+    <section id="contact" className="relative py-24 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#020617]/95 to-black"></div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Title */}
+        <h2 className="text-5xl font-bold text-center mb-20 text-white">
           Get In Touch
         </h2>
 
-        <form onSubmit={handleSubmit} className="glass-card p-8 max-w-2xl mx-auto transform hover:scale-105 transition-all duration-300">
-          <div className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className={`block text-sm font-medium mb-2 ${
-                  isDark ? 'text-slate-300' : 'text-gray-700'
-                }`}>
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="John Doe"
-                  required
-                  className={`w-full px-4 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
-                    isDark 
-                      ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
-                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                  }`}
-                />
-              </div>
-              
-              <div>
-                <label className={`block text-sm font-medium mb-2 ${
-                  isDark ? 'text-slate-300' : 'text-gray-700'
-                }`}>
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="john@example.com"
-                  required
-                  className={`w-full px-4 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
-                    isDark 
-                      ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
-                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                  }`}
-                />
-              </div>
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* LEFT COLUMN */}
+          <div>
+            <h3 className="text-3xl font-bold text-white mb-6">
+              Let’s Work Together
+            </h3>
+            <p className="text-slate-300 mb-10 leading-relaxed">
+              I'm always interested in hearing about new projects and opportunities.
+              Whether you're looking for a full-time engineer, freelance collaboration,
+              or just want to discuss ideas, feel free to reach out!
+            </p>
+
+            {/* Contact Cards */}
+            <div className="space-y-5">
+              {[
+                { icon: 'fa-envelope', title: 'Email', value: 'maniga.1love@gmail.com' },
+                { icon: 'fa-phone', title: 'Phone', value: '+251 906 287 552' },
+                { icon: 'fa-map-marker-alt', title: 'Location', value: 'Addis Ababa, Ethiopia' }
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-5 p-5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-accent-blue/40 transition"
+                >
+                  <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-accent-blue/20 text-accent-blue">
+                    <i className={`fas ${item.icon}`}></i>
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">{item.title}</p>
+                    <p className="text-slate-400">{item.value}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            
-            <div>
-              <label className={`block text-sm font-medium mb-2 ${
-                isDark ? 'text-slate-300' : 'text-gray-700'
-              }`}>
-                Subject
-              </label>
-              <input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                placeholder="Project Inquiry"
-                required
-                className={`w-full px-4 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
-                  isDark 
-                    ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                }`}
-              />
+
+            {/* Social Icons */}
+            <div className="flex gap-4 mt-8">
+              {['github', 'linkedin', 'upwork'].map((icon) => (
+                <a
+                  key={icon}
+                  href="#"
+                  className="w-11 h-11 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 text-accent-blue hover:bg-accent-blue hover:text-white transition"
+                >
+                  <i className={`fab fa-${icon}`}></i>
+                </a>
+              ))}
             </div>
-            
-            <div>
-              <label className={`block text-sm font-medium mb-2 ${
-                isDark ? 'text-slate-300' : 'text-gray-700'
-              }`}>
-                Message
-              </label>
+          </div>
+
+          {/* RIGHT COLUMN – FORM */}
+          <form
+            onSubmit={handleSubmit}
+            className="p-10 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl"
+          >
+            <div className="space-y-6">
+              {['name', 'email', 'subject'].map((field) => (
+                <input
+                  key={field}
+                  type={field === 'email' ? 'email' : 'text'}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  placeholder={`Your ${field.charAt(0).toUpperCase() + field.slice(1)}`}
+                  required
+                  className="w-full px-5 py-4 rounded-xl bg-[#020617]/80 border border-white/10 text-white placeholder-slate-400 focus:ring-2 focus:ring-accent-blue/40 outline-none"
+                />
+              ))}
+
               <textarea
                 name="message"
                 rows="5"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell me about your project..."
+                placeholder="Your Message"
                 required
-                className={`w-full px-4 py-3 rounded-lg resize-vertical transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
-                  isDark 
-                    ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
-                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
-                }`}
-              ></textarea>
+                className="w-full px-5 py-4 rounded-xl bg-[#020617]/80 border border-white/10 text-white placeholder-slate-400 focus:ring-2 focus:ring-accent-blue/40 outline-none resize-none"
+              />
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-accent-blue to-purple-600 text-white font-semibold hover:scale-[1.02] transition"
+              >
+                {isSubmitting ? 'Sending…' : 'Send Message'}
+              </button>
             </div>
-            
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-accent-blue/25 ${
-                isSubmitting 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-accent-blue via-purple-600 to-pink-600 hover:from-accent-blue/90 hover:via-purple-600/90 hover:to-pink-600/90 text-white'
-              }`}
-            >
-              {isSubmitting ? (
-                <span className="flex items-center justify-center gap-3">
-                  <i className="fas fa-spinner fa-spin"></i>
-                  <span>Sending...</span>
-                </span>
-              ) : (
-                <span className="flex items-center justify-center gap-3">
-                  <i className="fas fa-paper-plane"></i>
-                  <span>Send Message</span>
-                </span>
-              )}
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
 
+      {/* Notification */}
       {notification && (
         <div
-          className={`fixed top-6 right-6 px-8 py-4 rounded-2xl shadow-2xl z-[60] transform transition-all duration-500 backdrop-blur-sm ${
+          className={`fixed top-6 right-6 px-6 py-4 rounded-xl text-white shadow-xl z-[60] ${
             notification.type === 'success'
-              ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/25'
-              : 'bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-red-500/25'
+              ? 'bg-green-600'
+              : 'bg-red-600'
           }`}
         >
-          <div className="flex items-center gap-4">
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-              notification.type === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'
-            }`}>
-              <i className={`fas ${
-                notification.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'
-              } text-white`}></i>
-            </div>
-            <div>
-              <p className="font-semibold text-white mb-1">
-                {notification.type === 'success' ? 'Success!' : 'Error'}
-              </p>
-              <p className="text-white/90 text-sm">
-                {notification.message}
-              </p>
-            </div>
-          </div>
+          {notification.message}
         </div>
       )}
     </section>
