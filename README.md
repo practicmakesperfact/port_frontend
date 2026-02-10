@@ -1,4 +1,4 @@
-# Portfolio Frontend
+# Portfolio 
 
 A modern, responsive portfolio website built with React, Vite, and Tailwind CSS.
 
@@ -45,7 +45,7 @@ frontend/
 │   ├── App.jsx            # Main App component
 │   ├── index.css          # Global styles
 │   └── main.jsx           # Entry point
-├── .env.local            # Environment variables (not tracked)
+├── .env            # Environment variables (not tracked)
 ├── .gitignore           # Git ignore rules
 ├── index.html           # HTML template
 ├── package.json         # Dependencies and scripts
@@ -77,8 +77,8 @@ frontend/
 
 3. **Set up environment variables:**
    ```bash
-   # Create .env.local file
-   cp .env.example .env.local
+   # Create .env. file
+   cp .env.example .env 
    
    # Add your environment variables
    VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_key
@@ -137,7 +137,7 @@ Update your portfolio information in `src/data/portfolio.json`:
 The contact form uses Web3Forms API for email sending:
 
 1. **Get your free API key** at [web3forms.com](https://web3forms.com/)
-2. **Add it to `.env.local`:**
+2. **Add it to `.env.`:**
    ```
    VITE_WEB3FORMS_ACCESS_KEY=your_api_key_here
    ```
@@ -190,8 +190,8 @@ This project is licensed under the MIT License.
 
 **Haymanot Asmare** - Full Stack Developer
 
-- **Portfolio:** [Live Demo](https://your-portfolio-url.com)
-- **GitHub:** [github.com/haymanot](https://github.com/haymanot)
+- **Portfolio:** [Live Demo](https://haymanot.vercel.app)
+- **GitHub:** [github.com/haymanot](https://github.com/practicmakesperfact)
 - **LinkedIn:** [linkedin.com/in/haymanot-asmare](https://linkedin.com/in/haymanot-asmare)
 
 ---
