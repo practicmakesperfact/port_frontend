@@ -72,7 +72,7 @@
       "description": "A secure and scalable enterprise web application designed to manage client feedback, track issues, and improve communication efficiency for AITB.",
       "technologies": ["React", "Tailwind CSS", "Django", "Django REST Framework", "PostgreSQL"],
       "image": "/projects/cfitp.jpeg",
-      "github_url": "https://github.com/haymanot/cfitp",
+      "github_url": "https://github.com/practicmakesperfact/CFITP_Frontend.git",
       "live_url": "https://cfitp.example.com",
       "features": ["Role-based authentication", "Feedback submission and tracking", "Real-time issue status tracking", "Admin dashboard and analytics", "RESTful API integration"],
       "category": "enterprise"
@@ -98,11 +98,31 @@
       "category": "automation"
     },
     {
+      "title": "Car Habesha - Car Rental System",
+      "description": "A comprehensive car rental management system built with HTML, CSS, JavaScript, and Django backend, enabling vehicle booking, customer management, and fleet tracking.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Django", "PostgreSQL"],
+      "image": "/projects/car-habesha.jpg",
+      "github_url": "https://github.com/practicmakesperfact/Car-rental-system.git",
+      "live_url": "https://car-habesha.example.com",
+      "features": ["Vehicle search and filtering", "Online booking system", "Customer management dashboard", "Payment integration", "Fleet tracking", "Responsive design"],
+      "category": "fullstack"
+    },
+    {
+      "title": "Nexaguardian TG Bot - Maneging Nexasoft Dev",
+      "description": "A sophisticated Telegram bot developed for Maneging Nexasoft Dev, providing automated responses, user management, and integration with development workflows.",
+      "technologies": ["Python", "Telegram Bot API", "SQLite", "Automation"],
+      "image": "/projects/nexaguardian-bot.jpg",
+      "github_url": "https://github.com/practicmakesperfact/nexaguardian-tg-bot.git",
+      "live_url": "https://t.me/nexaguardian_bot",
+      "features": ["Automated customer support", "User authentication", "Integration with development tools", "Custom command handling", "Analytics and reporting"],
+      "category": "automation"
+    },
+    {
       "title": "BIIB Designs - Architectural Company Website",
       "description": "A modern and visually appealing corporate website developed for an architectural and design company to showcase services, portfolios, and company identity.",
       "technologies": ["React", "Tailwind CSS", "Django", "Django REST Framework"],
       "image": "/projects/biib-designs.avif",
-      "github_url": "https://github.com/haymanot/biib-designs",
+      "github_url": "https://github.com/practicmakesperfact/biib-frontend.git",
       "live_url": "https://biib-designs.example.com",
       "features": ["Portfolio gallery", "Service presentation", "Contact and inquiry forms", "Responsive and modern layout", "Backend-powered content management"],
       "category": "corporate"
