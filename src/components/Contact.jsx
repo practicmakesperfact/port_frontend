@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
-import portfolioData from '../data/portfolio.json';
 
 const Contact = () => {
   const { isDark } = useTheme();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [notification, setNotification] = useState(null);
 
@@ -20,50 +21,41 @@ const Contact = () => {
     });
   };
 
+  const showNotification = (message, type) => {
+    setNotification({ message, type });
+    setTimeout(() => setNotification(null), 4000);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Simple validation
+
     if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       showNotification('Please fill in all fields', 'error');
       return;
     }
-    
-    setIsSubmitting(true);
-    
-    try {
-      // Create email content
-      const emailContent = {
-        to: portfolioData.profile.email,
-        subject: `Portfolio Contact: ${formData.subject}`,
-        body: `
-Name: ${formData.name}
-Email: ${formData.email}
-Subject: ${formData.subject}
 
-Message:
-${formData.message}
-        `.trim()
-      };
-      
-      // Use Web3Forms API (free, no backend needed)
+    setIsSubmitting(true);
+
+    try {
+      const data = new FormData();
+      data.append('access_key', '61fcebab-1e60-4b17-b097-6abc5e229ad9');
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append(
+        'message',
+        `Subject: ${formData.subject}\n\n${formData.message}`
+      );
+      data.append('botcheck', '');
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'YOUR_FREE_KEY', // You'll need to get this from web3forms.com
-          subject: emailContent.subject,
-          from_name: formData.name,
-          from_email: formData.email,
-          message: emailContent.body
-        })
+        body: data
       });
-      
-      if (response.ok) {
-        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+
+      const result = await response.json();
+
+      if (result.success) {
+        showNotification('Message sent successfully!', 'success');
         setFormData({
           name: '',
           email: '',
@@ -71,215 +63,159 @@ ${formData.message}
           message: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        showNotification(result.message || 'Submission failed', 'error');
       }
     } catch (error) {
-      // Fallback to mailto
-      const subject = encodeURIComponent(formData.subject);
-      const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-      const mailtoLink = `mailto:${portfolioData.profile.email}?subject=${subject}&body=${body}`;
-      
-      window.open(mailtoLink, '_blank');
-      showNotification('Email client opened! Please click "Send" to deliver your message to maniga.1love@gmail.com', 'success');
-      
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      showNotification('Network error. Please try again.', 'error');
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const showNotification = (message, type) => {
-    setNotification({ message, type });
-    setTimeout(() => {
-      setNotification(null);
-    }, 5000);
-  };
-
-  const contactMethods = [
-    {
-      icon: 'fas fa-envelope',
-      title: 'Email',
-      info: 'maniga.1love@gmail.com'
-    },
-    {
-      icon: 'fas fa-phone',
-      title: 'Phone',
-      info: '+251 906 287 552'
-    },
-    {
-      icon: 'fas fa-map-marker-alt',
-      title: 'Location',
-      info: 'Addis Ababa, Ethiopia'
-    }
-  ];
-
-  const socialLinks = [
-    { icon: 'fab fa-github', url: 'https://github.com' },
-    { icon: 'fab fa-linkedin', url: 'https://linkedin.com' },
-    { icon: 'fab fa-upwork', url: 'https://upwork.com' }
-  ];
-
   return (
-    <section id="contact" className="py-24 relative">
-      <div className={`absolute inset-0 ${
-        isDark 
-          ? 'bg-gradient-to-br from-accent-blue/5 to-transparent' 
-          : 'bg-gradient-to-br from-accent-blue/2 to-transparent'
-      }`}></div>
-      
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-        <h2 className="section-title">Get In Touch</h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
-          <div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-slate-200 mb-4">Let's Work Together</h3>
-            <p className="text-gray-700 dark:text-slate-300 text-lg mb-8 leading-relaxed">
-              I'm always interested in hearing about new projects and opportunities. 
-              Whether you're looking for a full-time engineer, freelance collaboration, 
-              or just want to discuss ideas, feel free to reach out!
-            </p>
-            
-            <div className="space-y-4 mb-8">
-              {contactMethods.map((method, index) => (
-                <div
-                  key={index}
-                  className="glass-card p-4 flex items-center gap-4 hover:bg-accent-blue/10 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-xl flex items-center justify-center">
-                    <i className={`${method.icon} text-accent-blue text-xl`}></i>
-                  </div>
-                  <div>
-                    <h4 className="text-gray-900 dark:text-slate-200 font-semibold">{method.title}</h4>
-                    <p className="text-gray-600 dark:text-slate-400">{method.info}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="flex gap-3">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link"
-                >
-                  <i className={social.icon}></i>
-                </a>
-              ))}
-            </div>
-          </div>
-          
-          {/* Contact Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="glass-card p-8">
-              <div className="space-y-6">
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your Name"
-                    className={`w-full px-4 py-3 rounded-xl text-gray-900 dark:text-slate-200 placeholder-gray-500 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-blue/20 transition-all duration-300 ${
-                      isDark 
-                        ? 'bg-dark-navy/50 border border-accent-blue/20' 
-                        : 'bg-white/50 border border-gray-200'
-                    }`}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your Email"
-                    className={`w-full px-4 py-3 rounded-xl text-gray-900 dark:text-slate-200 placeholder-gray-500 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-blue/20 transition-all duration-300 ${
-                      isDark 
-                        ? 'bg-dark-navy/50 border border-accent-blue/20' 
-                        : 'bg-white/50 border border-gray-200'
-                    }`}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Subject"
-                    className={`w-full px-4 py-3 rounded-xl text-gray-900 dark:text-slate-200 placeholder-gray-500 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-blue/20 transition-all duration-300 ${
-                      isDark 
-                        ? 'bg-dark-navy/50 border border-accent-blue/20' 
-                        : 'bg-white/50 border border-gray-200'
-                    }`}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Your Message"
-                    rows="5"
-                    className={`w-full px-4 py-3 rounded-xl text-gray-900 dark:text-slate-200 placeholder-gray-500 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent-blue/20 transition-all duration-300 resize-vertical ${
-                      isDark 
-                        ? 'bg-dark-navy/50 border border-accent-blue/20' 
-                        : 'bg-white/50 border border-gray-200'
-                    }`}
-                    required
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary w-full justify-center"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <i className="fas fa-spinner fa-spin"></i>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <i className="fas fa-paper-plane"></i>
-                      Send Message
-                    </>
-                  )}
-                </button>
+    <section id="contact" className="py-20 relative">
+      <div className="max-w-6xl mx-auto px-5">
+        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-accent-blue to-purple-600 bg-clip-text text-transparent">
+          Get In Touch
+        </h2>
+
+        <form onSubmit={handleSubmit} className="glass-card p-8 max-w-2xl mx-auto transform hover:scale-105 transition-all duration-300">
+          <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${
+                  isDark ? 'text-slate-300' : 'text-gray-700'
+                }`}>
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="John Doe"
+                  required
+                  className={`w-full px-4 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
+                    isDark 
+                      ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
+                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                  }`}
+                />
               </div>
-            </form>
+              
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${
+                  isDark ? 'text-slate-300' : 'text-gray-700'
+                }`}>
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="john@example.com"
+                  required
+                  className={`w-full px-4 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
+                    isDark 
+                      ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
+                      : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                  }`}
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label className={`block text-sm font-medium mb-2 ${
+                isDark ? 'text-slate-300' : 'text-gray-700'
+              }`}>
+                Subject
+              </label>
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="Project Inquiry"
+                required
+                className={`w-full px-4 py-3 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
+                  isDark 
+                    ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                }`}
+              />
+            </div>
+            
+            <div>
+              <label className={`block text-sm font-medium mb-2 ${
+                isDark ? 'text-slate-300' : 'text-gray-700'
+              }`}>
+                Message
+              </label>
+              <textarea
+                name="message"
+                rows="5"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell me about your project..."
+                required
+                className={`w-full px-4 py-3 rounded-lg resize-vertical transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue/30 focus:border-accent-blue/50 ${
+                  isDark 
+                    ? 'bg-gray-800/50 border-gray-700 text-white placeholder-gray-400' 
+                    : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
+                }`}
+              ></textarea>
+            </div>
+            
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-accent-blue/25 ${
+                isSubmitting 
+                  ? 'bg-gray-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-r from-accent-blue via-purple-600 to-pink-600 hover:from-accent-blue/90 hover:via-purple-600/90 hover:to-pink-600/90 text-white'
+              }`}
+            >
+              {isSubmitting ? (
+                <span className="flex items-center justify-center gap-3">
+                  <i className="fas fa-spinner fa-spin"></i>
+                  <span>Sending...</span>
+                </span>
+              ) : (
+                <span className="flex items-center justify-center gap-3">
+                  <i className="fas fa-paper-plane"></i>
+                  <span>Send Message</span>
+                </span>
+              )}
+            </button>
           </div>
-        </div>
+        </form>
       </div>
-      
-      {/* Notification */}
+
       {notification && (
         <div
-          className={`fixed top-4 right-4 px-6 py-4 rounded-xl shadow-2xl z-50 transform transition-all duration-300 ${
+          className={`fixed top-6 right-6 px-8 py-4 rounded-2xl shadow-2xl z-[60] transform transition-all duration-500 backdrop-blur-sm ${
             notification.type === 'success'
-              ? 'bg-green-500/90 text-white'
-              : 'bg-red-500/90 text-white'
+              ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/25'
+              : 'bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-red-500/25'
           }`}
         >
-          <div className="flex items-center gap-3">
-            <i className={`fas fa-${notification.type === 'success' ? 'check-circle' : 'exclamation-circle'}`}></i>
-            <span>{notification.message}</span>
+          <div className="flex items-center gap-4">
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+              notification.type === 'success' ? 'bg-green-500/20' : 'bg-red-500/20'
+            }`}>
+              <i className={`fas ${
+                notification.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'
+              } text-white`}></i>
+            </div>
+            <div>
+              <p className="font-semibold text-white mb-1">
+                {notification.type === 'success' ? 'Success!' : 'Error'}
+              </p>
+              <p className="text-white/90 text-sm">
+                {notification.message}
+              </p>
+            </div>
           </div>
         </div>
       )}
