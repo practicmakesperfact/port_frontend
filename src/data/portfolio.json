@@ -82,7 +82,7 @@
       "description": "A full-featured e-commerce web application developed for an electronics retail business, enabling online product browsing, purchasing, and order management.",
       "technologies": ["JavaScript", "Bootstrap", "Django", "SQLite3"],
       "image": "/projects/yoni.jpeg",
-      "github_url": "https://github.com/haymanot/yoni-electronics",
+      "github_url": "https://github.com/practicmakesperfact/E-commerce-python-Django-project.git",
       "live_url": "https://yoni-electronics.example.com",
       "features": ["Product catalog and categories", "Shopping cart functionality", "Order management system", "Admin product control", "Responsive design"],
       "category": "ecommerce"
