@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import portfolioData from '../data/portfolio.json';
+import CV from '../assets/CV.pdf';
 
 const About = () => {
   const { isDark } = useTheme();
@@ -101,8 +102,10 @@ const About = () => {
                     
                     {/* Download CV Button */}
                     <a 
-                      href="/CV.pdf" 
+                      href={CV} 
                       download="Haymanot_Asmare_CV.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="btn-primary w-full justify-center"
                     >
                       <i className="fas fa-download"></i>
