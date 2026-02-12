@@ -62,11 +62,6 @@ const BinaryRain = () => {
         ref={canvasRef}
         className="absolute inset-0"
       />
-      <div className={`absolute inset-0 z-10 ${
-        isDark 
-          ? 'bg-gradient-to-b from-transparent to-dark-navy' 
-          : 'bg-gradient-to-b from-transparent to-gray-50'
-      }`} />
     </div>
   );
 };

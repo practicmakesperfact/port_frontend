@@ -78,7 +78,7 @@ const About = () => {
                     </p>
                     
                     {/* Social Links */}
-                    <div className="flex justify-center gap-3">
+                    <div className="flex justify-center gap-3 mb-4">
                       {profileData?.github_url && (
                         <a href={profileData.github_url} target="_blank" rel="noopener noreferrer" 
                            className="p-2 rounded-lg bg-accent-blue/10 hover:bg-accent-blue/20 transition-all duration-300">
@@ -98,6 +98,16 @@ const About = () => {
                         </a>
                       )}
                     </div>
+                    
+                    {/* Download CV Button */}
+                    <a 
+                      href="/CV.pdf" 
+                      download="Haymanot_Asmare_CV.pdf"
+                      className="btn-primary w-full justify-center"
+                    >
+                      <i className="fas fa-download"></i>
+                      Download CV
+                    </a>
                   </div>
                 </div>
               </div>

@@ -81,7 +81,7 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-accent-blue/10 hover:bg-accent-blue/20 transition-all duration-300 group"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-accent-blue/10 hover:bg-gray-200 dark:hover:bg-accent-blue/20 transition-all duration-300 group"
               aria-label="Toggle theme"
             >
               {isDark ? (
@@ -97,7 +97,7 @@ const Navbar = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-accent-blue/10 hover:bg-accent-blue/20 transition-all duration-300 group"
+              className="p-2 rounded-lg bg-gray-100 dark:bg-accent-blue/10 hover:bg-gray-200 dark:hover:bg-accent-blue/20 transition-all duration-300 group"
               aria-label="Toggle theme"
             >
               {isDark ? (
