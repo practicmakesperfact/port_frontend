@@ -173,7 +173,7 @@ const Contact = () => {
       {/* Notification */}
       {notification && (
         <div
-          className={`fixed top-6 right-6 px-6 py-4 rounded-xl text-white shadow-xl z-[60] ${
+          className={`fixed top-6 right-6 px-6 py-4 rounded-xl text-white shadow-2xl z-[9999] ${
             notification.type === 'success'
               ? 'bg-green-600'
               : 'bg-red-600'
