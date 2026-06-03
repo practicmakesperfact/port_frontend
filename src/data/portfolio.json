@@ -122,7 +122,7 @@
       "category": "corporate"
     },
     {
-      "title": "Smart inventory management system -for Qelem meda technology",
+      "title": "inventory management system - Qelem meda hakhton project",
       "description": "A comprehensive inventory management system designed to streamline operations for Qelem meda Hakhton project, featuring real-time tracking, reporting, and analytics.",
       "technologies": ["Node.js", "React", "MongoDB Atlas", "Express", "Tailwind CSS"],
       "image": "/projects/inventery.png",
