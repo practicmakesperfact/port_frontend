@@ -13,6 +13,7 @@
       "name": "Frontend Development",
       "skills": [
         {"name": "React", "level": 90, "icon": "fab fa-react"},
+        {"name": "Next.js", "level": 90, "icon": "fab fa-react"},
         {"name": "JavaScript", "level": 85, "icon": "fab fa-js"},
         {"name": "Tailwind CSS", "level": 90, "icon": "fab fa-css3"},
         {"name": "Bootstrap", "level": 85, "icon": "fab fa-bootstrap"}
@@ -24,6 +25,7 @@
         {"name": "Django", "level": 90, "icon": "fab fa-python"},
         {"name": "Django REST Framework", "level": 85, "icon": "fas fa-cogs"},
         {"name": "FastAPI", "level": 75, "icon": "fas fa-bolt"}
+ 
       ]
     },
     {
@@ -87,16 +89,7 @@
       "features": ["Product catalog and categories", "Shopping cart functionality", "Order management system", "Admin product control", "Responsive design"],
       "category": "ecommerce"
     },
-    {
-      "title": "FOTB - File Organizer Telegram Bot",
-      "description": "An intelligent Telegram bot designed to automatically organize and categorize downloaded files, making file management seamless and efficient.",
-      "technologies": ["Python", "Telegram Bot API", "SQLite", "File System Operations"],
-      "image": "/projects/bot.png",
-      "github_url": "https://github.com/haymanot/fotb-bot",
-      "live_url": "https://t.me/fotb_bot",
-      "features": ["Automatic file categorization", "Smart file naming", "Download tracking", "File search functionality", "Custom organization rules"],
-      "category": "automation"
-    },
+
     {
       "title": "Car Habesha - Car Rental System",
       "description": "A comprehensive car rental management system built with HTML, CSS, JavaScript, and Django backend, enabling vehicle booking, customer management, and fleet tracking.",
@@ -107,16 +100,7 @@
       "features": ["Vehicle search and filtering", "Online booking system", "Customer management dashboard", "Payment integration", "Fleet tracking", "Responsive design"],
       "category": "fullstack"
     },
-    {
-      "title": "Nexaguardian TG Bot - Maneging Nexasoft Dev",
-      "description": "A sophisticated Telegram bot developed for Maneging Nexasoft Dev, providing automated responses, user management, and integration with development workflows.",
-      "technologies": ["Python", "Telegram Bot API", "SQLite", "Automation"],
-      "image": "/projects/nexaguardian-bot.png",
-      "github_url": "https://github.com/practicmakesperfact/nexaguardian-tg-bot.git",
-      "live_url": "https://t.me/nexaguardian_bot",
-      "features": ["Automated customer support", "User authentication", "Integration with development tools", "Custom command handling", "Analytics and reporting"],
-      "category": "automation"
-    },
+
     {
       "title": "BIIB Designs - Architectural Company Website",
       "description": "A modern and visually appealing corporate website developed for an architectural and design company to showcase services, portfolios, and company identity.",
@@ -124,6 +108,47 @@
       "image": "/projects/biib-designs.png",
       "github_url": "https://github.com/practicmakesperfact/biib-frontend.git",
       "live_url": "https://biib-designs.example.com",
+      "features": ["Portfolio gallery", "Service presentation", "Contact and inquiry forms", "Responsive and modern layout", "Backend-powered content management"],
+      "category": "corporate"
+    },
+    {
+      "title": "Anti-malware chatbot",
+      "description": "A chatbot designed to detect and respond to malware threats in real-time, providing users with immediate assistance and information.",
+      "technologies": ["Python", "pandas", "scikit-learn","DRF","Next.js", "Tailwind CSS"],
+      "image": "/projects/malware.png",
+      "github_url": "https://github.com/practicmakesperfact/Anti-malware_chatbot.git",
+      "live_url": "https://github.com/practicmakesperfact/Anti-malware_chatbot.git",
+      "features": ["Portfolio gallery", "Service presentation", "Contact and inquiry forms", "Responsive and modern layout", "Backend-powered content management"],
+      "category": "corporate"
+    },
+    {
+      "title": "Smart inventory management system -for Qelem meda technology",
+      "description": "A comprehensive inventory management system designed to streamline operations for Qelem meda Hakhton project, featuring real-time tracking, reporting, and analytics.",
+      "technologies": ["Node.js", "React", "MongoDB Atlas", "Express", "Tailwind CSS"],
+      "image": "/projects/inventery.png",
+      "github_url": "https://github.com/practicmakesperfact/hakaton_proj.git",
+      "live_url": "https://smart-inventory-management.example.com",
+      "features": ["Real-time inventory tracking", "Sales and purchase reporting", "User-friendly dashboard", "Mobile responsiveness", "Data analytics and insights"],
+      "category": "corporate"
+    },
+    {
+      "title": "Hotel management - frontend",
+      "description": "A comprehensive hotel management system designed to streamline operations for hotels, featuring real-time booking, reporting, and analytics.",
+      "technologies": [ "React", "Tailwind CSS","Shadcn UI","Shadcn UI","React Hook Form & Zod","Recharts","React Context & Hooks"],
+      "image": "/projects/hotel.png",
+      "github_url": "https://github.com/practicmakesperfact/Hotelmant.git",
+      "live_url": "https://hotel-management.example.com",
+      "features": ["Real-time booking management", "Customer relationship management", "Analytics and reporting", "Mobile responsiveness", "User-friendly interface"],
+      "category": "corporate"
+    },
+
+    {
+      "title": "AMHABINGO - telegram bot for AMHABINGO",
+      "description": "A telegram bot developed for AMHABINGO to facilitate user interactions and provide information.",
+      "technologies": ["Python", "Telegram Bot API", "SQLite"],
+      "image": "/projects/bingo.png",
+      "github_url": "https://github.com/practicmakesperfact/amhbingo-bot.git",
+      "live_url": "https://t.me/amhbingo_bot",
       "features": ["Portfolio gallery", "Service presentation", "Contact and inquiry forms", "Responsive and modern layout", "Backend-powered content management"],
       "category": "corporate"
     }
