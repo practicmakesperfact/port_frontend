@@ -56,7 +56,9 @@
       "name": "Tools & Collaboration",
       "skills": [
         {"name": "Git", "level": 90, "icon": "fab fa-git-alt"},
-        {"name": "GitHub", "level": 85, "icon": "fab fa-github"}
+        {"name": "GitHub", "level": 85, "icon": "fab fa-github"},
+        {"name": "Postman", "level": 85, "icon": "fab fa-postman"},
+        {"name": "Jira", "level": 80, "icon": "fab fa-jira"}
       ]
     },
     {
@@ -79,17 +81,7 @@
       "features": ["Role-based authentication", "Feedback submission and tracking", "Real-time issue status tracking", "Admin dashboard and analytics", "RESTful API integration"],
       "category": "enterprise"
     },
-    {
-      "title": "Yoni Central Electronics - Online Shopping Platform",
-      "description": "A full-featured e-commerce web application developed for an electronics retail business, enabling online product browsing, purchasing, and order management.",
-      "technologies": ["JavaScript", "Bootstrap", "Django", "SQLite3"],
-      "image": "/projects/yoni.png",
-      "github_url": "https://github.com/practicmakesperfact/E-commerce-python-Django-project.git",
-      "live_url": "https://yoni-electronics.example.com",
-      "features": ["Product catalog and categories", "Shopping cart functionality", "Order management system", "Admin product control", "Responsive design"],
-      "category": "ecommerce"
-    },
-
+  
     {
       "title": "Car Habesha - Car Rental System",
       "description": "A comprehensive car rental management system built with HTML, CSS, JavaScript, and Django backend, enabling vehicle booking, customer management, and fleet tracking.",

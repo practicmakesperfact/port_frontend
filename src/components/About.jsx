@@ -103,7 +103,7 @@ const About = () => {
                     {/* Download CV Button */}
                     <a 
                       href={CV} 
-                      download="Haymanot_Asmare_CV.pdf"
+                      download="CV.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-primary w-full justify-center"
